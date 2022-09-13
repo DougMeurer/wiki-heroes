@@ -28,29 +28,31 @@ function CollectionDetail() {
   console.log("detalhes", details);
   return (
     <>
-      <div>
-        <label>{details.collectionName}</label>
-        <p>{details.createdBy}</p>
+      {!isLoading && (
+        <div>
+          <label>{details.collectionName}</label>
+          <p>{details.createdBy}</p>
 
-        {details.hero.map((cH) => {
-          const heroImg = `${cH.thumbnail.path}.${cH.thumbnail.extension}`;
-          return (
-            <div>
-              <h3>{cH.name}</h3>
-              <img width={200} src={heroImg} alt="heroPic" />
+          {details.hero.map((cH) => {
+            const heroImg = `${cH.thumbnail.path}.${cH.thumbnail.extension}`;
+            return (
+              <div>
+                <h3>{cH.name}</h3>
+                <img width={200} src={heroImg} alt="heroPic" />
 
-              {cH.series.items.map((cS) => {
-                console.log(cS);
-                return (
-                  <div key={cS.name}>
-                    <h5>{cS.name}</h5>
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })}
-      </div>
+                {cH.series.items.map((cS) => {
+                  console.log(cS);
+                  return (
+                    <div key={cS.name}>
+                      <h5>{cS.name}</h5>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </>
   );
 }
