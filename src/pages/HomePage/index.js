@@ -1,9 +1,21 @@
-import SearchBar from "../../components/SearchBar";
+import { useState } from "react";
+import CreateCollections from "../CreateCollections";
 
-function HomePage({ search, setSearch }) {
+function HomePage() {
+  const [characters, setCharacters] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState("");
+
   return (
     <div>
-      <SearchBar search={search} setSearch={setSearch} />
+      <CreateCollections
+        isLoading={isLoading}
+        characters={characters}
+        search={search}
+        setSearch={setSearch}
+        setCharacters={setCharacters}
+        setIsLoading={setIsLoading}
+      />
     </div>
   );
 }
