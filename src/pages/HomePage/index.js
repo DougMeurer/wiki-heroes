@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CreateCollections from "../CreateCollections";
+import CreateCollections from "../../components/CreateCollections";
 
 function HomePage() {
   const [characters, setCharacters] = useState([]);

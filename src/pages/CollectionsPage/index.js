@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import NavBar from "../../components/NavBar";
 
 function CollectionsPage() {
   const [collected, setCollected] = useState([]);
@@ -26,6 +27,7 @@ function CollectionsPage() {
 
   return (
     <>
+      <NavBar />
       {!isLoading && (
         <>
           {collected.map((cE) => {

@@ -1,19 +1,23 @@
 import { Link } from "react-router-dom";
-import img from "../../Images/captain_america_poster.webp";
+import img from "../../Images/huh-the-watcher.gif";
 
 function ErrorPage() {
   return (
     <div>
-      <h1>404 PAGE NOT FOUND</h1>
       <div>
         <img src={img} alt="PageNotFound" />
       </div>
+      <h1>NOT EVEN THE EYE OF AUTU SEEMS TO FIND YOUR REQUEST</h1>
       <p>
-        Check that you typed the address correctly, go back to your previous
-        page or try using our site search to find something specific.
+        <strong>
+          Check that you typed the address correctly, go back to your previous
+          page or try using our site search to find something specific.
+        </strong>
       </p>
       <Link to="/">
-        <p>Back to Home Page</p>
+        <p>
+          <strong>Back to Home Page</strong>
+        </p>
       </Link>
     </div>
   );

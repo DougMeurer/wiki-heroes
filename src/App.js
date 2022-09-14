@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import NavBar from "./components/NavBar";
-import CollectionDetail from "./pages/CollectionDetail";
+import CollectionDetail from "./components/CollectionDetail";
 import CollectionsPage from "./pages/CollectionsPage";
 import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
@@ -9,7 +8,6 @@ import HomePage from "./pages/HomePage";
 function App() {
   return (
     <div className="App">
-      <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/Collections/:heroId" element={<CollectionDetail />} />

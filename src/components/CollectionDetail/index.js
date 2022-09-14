@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import EditUser from "../EditUser";
 
 function CollectionDetail() {
   const { heroId } = useParams();
@@ -25,13 +26,16 @@ function CollectionDetail() {
     fetchDetails();
   }, [heroId]);
 
-  console.log("detalhes", details);
   return (
     <>
       {!isLoading && (
         <div>
           <label>{details.collectionName}</label>
           <p>{details.createdBy}</p>
+          <EditUser heroId={heroId} details={details}/>
+          <button>
+            <Link to="/Collections">Back</Link>
+          </button>
 
           {details.hero.map((cH) => {
             const heroImg = `${cH.thumbnail.path}.${cH.thumbnail.extension}`;
@@ -41,7 +45,6 @@ function CollectionDetail() {
                 <img width={200} src={heroImg} alt="heroPic" />
 
                 {cH.series.items.map((cS) => {
-                  console.log(cS);
                   return (
                     <div key={cS.name}>
                       <h5>{cS.name}</h5>

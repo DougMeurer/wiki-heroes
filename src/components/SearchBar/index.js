@@ -1,9 +1,21 @@
 import axios from "axios";
 
-function SearchBar({ search, setSearch, setCharacters, setIsLoading }) {
+function SearchBar({
+  search,
+  setSearch,
+  setCharacters,
+  setIsLoading,
+  characters,
+}) {
   function handleChange(e) {
     setSearch(e.target.value);
   }
+
+  // function randomHero(search) {
+  //   const keys = (Object.keys = search);
+
+  //   return keys[Math.floor(Math.random() * search.lenght)];
+  // }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -27,15 +39,15 @@ function SearchBar({ search, setSearch, setCharacters, setIsLoading }) {
 
   return (
     <div>
-      <label>Find your hero:</label>
+      <label>Hero:</label>
       <input
         value={search}
         onChange={handleChange}
         type="text"
-        placeholder="Search your favorite caracter here"
-        required
+        placeholder="Ex: Hulk"
       />
       <button onClick={handleSubmit}>SEARCH</button>
+      {/* <button onClick={() => handleSubmit(randomHero)}>FEELING LUCKY?</button> */}
     </div>
   );
 }
