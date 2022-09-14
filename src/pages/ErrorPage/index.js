@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import img from "../../Images/huh-the-watcher.gif";
+import img from "../../assets/huh-the-watcher.gif";
 
 function ErrorPage() {
   return (

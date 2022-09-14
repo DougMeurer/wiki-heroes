@@ -7,6 +7,7 @@ function CollectionDetail() {
   const { heroId } = useParams();
   const [details, setDetails] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     async function fetchDetails() {
@@ -16,7 +17,6 @@ function CollectionDetail() {
           `https://ironrest.herokuapp.com/MyHeroCollection/${heroId}`
         );
 
-        console.log("eu", response.data);
         setDetails(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -24,29 +24,56 @@ function CollectionDetail() {
       }
     }
     fetchDetails();
-  }, [heroId]);
+  }, [heroId, reload]);
+
+  async function handleDeleteHero(index) {
+    setReload(false);
+    try {
+      const clone = { ...details };
+      delete clone._id;
+
+      clone.hero.splice(index, 1);
+
+      await axios.put(
+        `https://ironrest.herokuapp.com/MyHeroCollection/${heroId}`,
+        clone
+      );
+
+      setReload(true);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
       {!isLoading && (
         <div>
-          <label>{details.collectionName}</label>
-          <p>{details.createdBy}</p>
-          <EditUser heroId={heroId} details={details}/>
-          <button>
-            <Link to="/Collections">Back</Link>
-          </button>
+          <div>
+            <label>{details.collectionName}</label>
+            <p>{details.createdBy}</p>
+            <EditUser
+              heroId={heroId}
+              details={details}
+              setDetails={setDetails}
+              reload={reload}
+              setReload={setReload}
+            />
+            <button>
+              <Link to="/Collections">Back</Link>
+            </button>
+          </div>
 
-          {details.hero.map((cH) => {
+          {details.hero.map((cH, index) => {
             const heroImg = `${cH.thumbnail.path}.${cH.thumbnail.extension}`;
             return (
-              <div>
+              <div key={cH.id}>
                 <h3>{cH.name}</h3>
                 <img width={200} src={heroImg} alt="heroPic" />
-
+                <button onClick={() => handleDeleteHero(index)}>delete</button>
                 {cH.series.items.map((cS) => {
                   return (
-                    <div key={cS.name}>
+                    <div key={cS.resourceURI}>
                       <h5>{cS.name}</h5>
                     </div>
                   );

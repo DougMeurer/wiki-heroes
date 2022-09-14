@@ -1,36 +1,37 @@
 import axios from "axios";
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function EditUser({ heroId, details }) {
-  const [form, setForm] = useState({
-    collectionName: "",
-    hero: [],
-    createdBy: "",
-  }); 
-
-
+function EditUser({ heroId, details, reload, setReload }) {
+  const [newName, setNewName] = useState(details.collectionName);
+  const [toUpdate, setToUpdate] = useState(false);
   const navigate = useNavigate();
 
   function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setNewName(e.target.value);
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
-      
+      const clone = { ...details };
+      delete clone._id;
+
+      clone.collectionName = newName;
       await axios.put(
         `https://ironrest.herokuapp.com/MyHeroCollection/${heroId}`,
-        form
+        clone
       );
+
+      setReload(!reload);
+      navigate("/Collections");
     } catch (error) {
       console.log(error);
     }
   }
 
-  async function handleDelete() {  //deleta a colecao
+  async function handleDelete() {
     try {
       await axios.delete(
         `https://ironrest.herokuapp.com/MyHeroCollection/${heroId}`
@@ -42,10 +43,26 @@ function EditUser({ heroId, details }) {
     }
   }
 
+  return (
+    <>
+      <button
+        onClick={() => {
+          setToUpdate(!toUpdate);
+        }}
+      >
+        Edit Collection
+      </button>
+      {!toUpdate && <></>}
+      {toUpdate && (
+        <div>
+          <input onChange={handleChange} type="text" value={newName} />
+          <button onClick={handleSubmit}>Update</button>
+        </div>
+      )}
 
-  //criar o deletar do personagem 
-
-  return <></>;
+      <button onClick={handleDelete}>Delete</button>
+    </>
+  );
 }
 
 export default EditUser;

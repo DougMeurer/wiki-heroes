@@ -68,7 +68,7 @@ function CreateCollections({
             <div>
               <h3>Current Collection</h3>
               {form.hero.map((myHero) => {
-                return <p key={myHero.id}>{myHero.name}</p>;
+                return <p key={myHero.id + "colletion"}>{myHero.name}</p>;
               })}
             </div>
           )}
@@ -111,7 +111,7 @@ function CreateCollections({
                 </button>
                 {arrPath.series.items.map((serie) => {
                   return (
-                    <div key={serie.name}>
+                    <div key={serie.resourceURI}>
                       <h5>{serie.name}</h5>
                     </div>
                   );
