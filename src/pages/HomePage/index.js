@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import CreateCollections from "../../components/CreateCollections";
 

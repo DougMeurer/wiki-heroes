@@ -67,7 +67,7 @@ function CollectionDetail() {
           {details.hero.map((cH, index) => {
             const heroImg = `${cH.thumbnail.path}.${cH.thumbnail.extension}`;
             return (
-              <div key={cH.id}>
+              <div key={cH.id + "mkh"}>
                 <h3>{cH.name}</h3>
                 <img width={200} src={heroImg} alt="heroPic" />
                 <button onClick={() => handleDeleteHero(index)}>delete</button>

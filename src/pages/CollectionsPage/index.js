@@ -32,19 +32,21 @@ function CollectionsPage() {
         <>
           {collected.map((cE) => {
             return (
-              <div
-                key={cE._id}
-                onClick={() => navigate(`/Collections/${cE._id}`)}
-              >
+              <div key={cE._id}>
                 <label>{cE.collectionName}</label>
                 <p>{cE.createdBy}</p>
                 <>
                   {cE.hero.map((cH) => {
                     const heroImg = `${cH.thumbnail.path}.${cH.thumbnail.extension}`;
                     return (
-                      <div key={cH.id}>
+                      <div key={cH.id + "cH"}>
                         <h3>{cH.name}</h3>
-                        <img width={200} src={heroImg} alt="heroPic" />
+                        <img
+                          width={200}
+                          onClick={() => navigate(`/Collections/${cE._id}`)}
+                          src={heroImg}
+                          alt="heroPic"
+                        />
                       </div>
                     );
                   })}

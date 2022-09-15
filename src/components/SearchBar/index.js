@@ -1,4 +1,5 @@
 import axios from "axios";
+import RandomCharacter from "../RandomCharacter";
 
 function SearchBar({ search, setSearch, setCharacters, setIsLoading }) {
   function handleChange(e) {
@@ -12,7 +13,7 @@ function SearchBar({ search, setSearch, setCharacters, setIsLoading }) {
     async function getCharacters() {
       try {
         const response = await axios.get(
-          `https://gateway.marvel.com:443/v1/public/characters?ts=1&nameStartsWith=${search}&limit=100&apikey=ca32de5a171c96f65716939c839e991c&hash=8663ab1405304c747a9c3f977483fee5`
+          `https://gateway.marvel.com:443/v1/public/characters?ts=1&nameStartsWith=${search}&limit=100&apikey=07d94f3d6109ed6b027dd53405e2cd27&hash=3cab36207f66ee6ce9d733c26cbf952a`
         );
 
         const charactersObj = response.data.data.results;
@@ -35,6 +36,10 @@ function SearchBar({ search, setSearch, setCharacters, setIsLoading }) {
         placeholder="Ex: Hulk"
       />
       <button onClick={handleSubmit}>SEARCH</button>
+      <RandomCharacter
+        setCharacters={setCharacters}
+        setIsLoading={setIsLoading}
+      />
     </div>
   );
 }

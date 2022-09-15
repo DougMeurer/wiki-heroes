@@ -20,6 +20,8 @@ function CreateCollections({
 
   const [notEmpty, setNotEmpty] = useState(false);
 
+  const [clicked, setClicked] = useState(false);
+
   const navitage = useNavigate();
 
   function handleChange(e) {
@@ -97,18 +99,22 @@ function CreateCollections({
         {!isLoading &&
           characters.map((arrPath) => {
             const srcImg = `${arrPath.thumbnail.path}.${arrPath.thumbnail.extension}`;
-
+            console.log(arrPath);
             if (srcImg.includes("image_not_available")) {
-              return <></>;
+              return <span key={arrPath.resourceURI}></span>;
             }
 
             return (
-              <div key={arrPath.id}>
+              <div key={arrPath.id + "arrPath"}>
                 <h2>{arrPath.name}</h2>
                 <img width={200} src={srcImg} alt="heroImage" />
-                <button onClick={() => addHero(arrPath)}>
-                  Add to Collection
-                </button>
+                {!clicked && (
+                  <button onClick={() => addHero(arrPath)}>
+                    Add to Collection
+                  </button>
+                )}
+                {clicked && <button>Added</button>}
+
                 {arrPath.series.items.map((serie) => {
                   return (
                     <div key={serie.resourceURI}>
