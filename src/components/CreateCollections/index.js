@@ -30,6 +30,7 @@ function CreateCollections({
 
   function addHero(heroObj) {
     setForm({ ...form, hero: [...form.hero, heroObj] });
+    setClicked(!clicked);
     setNotEmpty(true);
   }
 
