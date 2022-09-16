@@ -54,7 +54,7 @@ function RandomCharacter({ setIsLoading, setCharacters }) {
     async function getCharacters() {
       try {
         const response = await axios.get(
-          `https://gateway.marvel.com:443/v1/public/characters?ts=1&nameStartsWith=${startWith[getRandom]}&limit=1&apikey=07d94f3d6109ed6b027dd53405e2cd27&hash=3cab36207f66ee6ce9d733c26cbf952a`
+          `https://gateway.marvel.com:443/v1/public/characters?ts=1&nameStartsWith=${startWith[getRandom]}&limit=1&apikey=ca32de5a171c96f65716939c839e991c&hash=8663ab1405304c747a9c3f977483fee5`
         );
 
         const randomOb = response.data.data.results;
