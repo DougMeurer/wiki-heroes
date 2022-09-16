@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Accordion, Button, Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import EditUser from "../EditUser";
 
@@ -94,14 +94,14 @@ function CollectionDetail() {
                 </div>
                 {cH.series.items.map((cS) => {
                   return (
-                    <Accordion.Item
+                    <div
                       eventKey="0"
                       key={cS.resourceURI}
-                      className="p-1 bg-"
+                      className="p-1"
                       size="lg"
                     >
                       <h6>{cS.name}</h6>
-                    </Accordion.Item>
+                    </div>
                   );
                 })}
               </Card.Body>

@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Accordion, AccordionContext, Card, Container } from "react-bootstrap";
+import { Accordion, Card, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { AccordionHeader } from "reactstrap";
 import NavBar from "../../components/NavBar";
 
 function CollectionsPage() {
@@ -45,9 +44,9 @@ function CollectionsPage() {
                     return (
                       <Accordion key={cH.id + "cH"}>
                         <h3 className="pb-1 pt-2">{cH.name}</h3>
-                        <Accordion.Item className="d-flex flex-wrap justify-content-center">
+                        <Accordion.Item>
                           <img
-                            width={"200rem"}
+                            width={200}
                             onClick={() => navigate(`/Collections/${cE._id}`)}
                             src={heroImg}
                             alt="heroPic"

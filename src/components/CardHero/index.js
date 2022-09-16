@@ -20,7 +20,7 @@ function CardHero({ arrPath, setForm, setNotEmpty, form, srcImg }) {
         variant="top"
         src={srcImg}
         alt="heroImage"
-        style={{ width: "18rem" }}
+        style={{ width: "16rem" }}
       />
 
       <ListGroup>
