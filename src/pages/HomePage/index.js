@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Container } from "react-bootstrap";
 import CreateCollections from "../../components/CreateCollections";
 
 function HomePage() {
@@ -7,7 +8,7 @@ function HomePage() {
   const [search, setSearch] = useState("");
 
   return (
-    <div>
+    <Container fluid style={{ backgroundColor: "#045a7c1e" }}>
       <CreateCollections
         isLoading={isLoading}
         characters={characters}
@@ -16,7 +17,7 @@ function HomePage() {
         setCharacters={setCharacters}
         setIsLoading={setIsLoading}
       />
-    </div>
+    </Container>
   );
 }
 

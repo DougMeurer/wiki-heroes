@@ -1,20 +1,24 @@
 import { Link } from "react-router-dom";
+import Nav from "react-bootstrap/Nav";
+import navImg from "../../assets/backggg.png";
 
 function NavBar() {
   return (
-    <>
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Marvel_Logo.svg"
-        style={{ width: "380px" }}
-        alt="logo"
-      />
-      <div>
-        <Link to="/">HOME</Link>
+    <Nav className="bg-danger mb-3 row align-items-end">
+      <div className="nav-item col">
+        <Link to="/" className="nav-link text-warning">
+          HOME
+        </Link>
       </div>
-      <div>
-        <Link to="/Collections">Collections Gallery</Link>
+      <div className="nav-item col">
+        <img src={navImg} style={{ width: "450px" }} alt="logo" />
       </div>
-    </>
+      <div className="nav-item col">
+        <Link to="/Collections" className="nav-link text-warning">
+          COLLECTIONS GALLERY
+        </Link>
+      </div>
+    </Nav>
   );
 }
 

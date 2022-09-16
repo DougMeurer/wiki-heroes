@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function EditUser({ heroId, details, reload, setReload }) {
@@ -45,22 +46,26 @@ function EditUser({ heroId, details, reload, setReload }) {
 
   return (
     <>
-      <button
+      <Button
+        variant="outline-success"
         onClick={() => {
           setToUpdate(!toUpdate);
         }}
       >
         Edit Collection
-      </button>
+      </Button>
       {!toUpdate && <></>}
       {toUpdate && (
         <div>
-          <input onChange={handleChange} type="text" value={newName} />
-          <button onClick={handleSubmit}>Update</button>
+          <Form.Control onChange={handleChange} type="text" value={newName} />
+          <Button variant="outline-primary" onClick={handleSubmit}>
+            Update Collection
+          </Button>
+          <Button variant="outline-danger" onClick={handleDelete}>
+            Delete Collection
+          </Button>
         </div>
       )}
-
-      <button onClick={handleDelete}>Delete</button>
     </>
   );
 }

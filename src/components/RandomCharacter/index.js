@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Button } from "react-bootstrap";
 
 function RandomCharacter({ setIsLoading, setCharacters }) {
   function handleSubmit(e) {
@@ -70,7 +71,13 @@ function RandomCharacter({ setIsLoading, setCharacters }) {
     }
     getCharacters();
   }
-  return <button onClick={handleSubmit}>HERO?</button>;
+  return (
+    <>
+      <Button variant="outline-warning" onClick={handleSubmit}>
+        HERO?
+      </Button>
+    </>
+  );
 }
 
 export default RandomCharacter;

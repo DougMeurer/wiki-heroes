@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Accordion, Button, Card } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import EditUser from "../EditUser";
 
@@ -46,12 +47,15 @@ function CollectionDetail() {
   }
 
   return (
-    <>
+    <div className="d-flex justify-content-center">
       {!isLoading && (
-        <div>
-          <div>
-            <label>{details.collectionName}</label>
-            <p>{details.createdBy}</p>
+        <Card style={{ width: "30rem" }}>
+          <Card.Header>
+            <Card.Title>{details.collectionName}</Card.Title>
+            <Card.Title>by: {details.createdBy}</Card.Title>
+          </Card.Header>
+
+          <Card.Body>
             <EditUser
               heroId={heroId}
               details={details}
@@ -59,31 +63,53 @@ function CollectionDetail() {
               reload={reload}
               setReload={setReload}
             />
-            <button>
+          </Card.Body>
+          <div className="mt-1 mb-1">
+            <Button variant="outline-info">
               <Link to="/Collections">Back</Link>
-            </button>
+            </Button>
           </div>
 
           {details.hero.map((cH, index) => {
             const heroImg = `${cH.thumbnail.path}.${cH.thumbnail.extension}`;
             return (
-              <div key={cH.id + "mkh"}>
-                <h3>{cH.name}</h3>
-                <img width={200} src={heroImg} alt="heroPic" />
-                <button onClick={() => handleDeleteHero(index)}>delete</button>
+              <Card.Body key={cH.id + "mkh"}>
+                <Card.Header>
+                  <h3>{cH.name}</h3>
+                </Card.Header>
+                <Card.Img
+                  variant="top mt-1"
+                  style={{ width: "20rem" }}
+                  src={heroImg}
+                  alt="heroPic"
+                />
+                <div>
+                  <Button
+                    variant="danger m-1 mt-1"
+                    size="sm"
+                    onClick={() => handleDeleteHero(index)}
+                  >
+                    Delete
+                  </Button>
+                </div>
                 {cH.series.items.map((cS) => {
                   return (
-                    <div key={cS.resourceURI}>
-                      <h5>{cS.name}</h5>
-                    </div>
+                    <Accordion.Item
+                      eventKey="0"
+                      key={cS.resourceURI}
+                      className="p-1 bg-"
+                      size="lg"
+                    >
+                      <h6>{cS.name}</h6>
+                    </Accordion.Item>
                   );
                 })}
-              </div>
+              </Card.Body>
             );
           })}
-        </div>
+        </Card>
       )}
-    </>
+    </div>
   );
 }
 

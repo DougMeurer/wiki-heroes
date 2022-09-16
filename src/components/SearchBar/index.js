@@ -1,5 +1,6 @@
 import axios from "axios";
 import RandomCharacter from "../RandomCharacter";
+import { Form, Button, InputGroup } from "react-bootstrap";
 
 function SearchBar({ search, setSearch, setCharacters, setIsLoading }) {
   function handleChange(e) {
@@ -28,18 +29,22 @@ function SearchBar({ search, setSearch, setCharacters, setIsLoading }) {
 
   return (
     <div>
-      <label>Hero:</label>
-      <input
-        value={search}
-        onChange={handleChange}
-        type="text"
-        placeholder="Ex: Hulk"
-      />
-      <button onClick={handleSubmit}>SEARCH</button>
-      <RandomCharacter
-        setCharacters={setCharacters}
-        setIsLoading={setIsLoading}
-      />
+      <Form.Label className="mb-0 mt-2">Hero:</Form.Label>
+      <InputGroup>
+        <Form.Control
+          value={search}
+          onChange={handleChange}
+          type="text"
+          placeholder="Ex: Hulk"
+        />
+        <Button variant="outline-primary  " onClick={handleSubmit}>
+          SEARCH
+        </Button>
+        <RandomCharacter
+          setCharacters={setCharacters}
+          setIsLoading={setIsLoading}
+        />
+      </InputGroup>
     </div>
   );
 }

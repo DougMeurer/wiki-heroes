@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Accordion, AccordionContext, Card, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { AccordionHeader } from "reactstrap";
 import NavBar from "../../components/NavBar";
 
 function CollectionsPage() {
@@ -26,37 +28,41 @@ function CollectionsPage() {
   }, []);
 
   return (
-    <>
+    <Container fluid style={{ backgroundColor: "#045a7c1e" }}>
       <NavBar />
       {!isLoading && (
-        <>
+        <div className="d-flex flex-wrap justify-content-around">
           {collected.map((cE) => {
             return (
-              <div key={cE._id}>
-                <label>{cE.collectionName}</label>
-                <p>{cE.createdBy}</p>
-                <>
+              <Card key={cE._id}>
+                <Card.Header>
+                  <Card.Title>{cE.collectionName}</Card.Title>
+                  <p className="h4">by: {cE.createdBy}</p>
+                </Card.Header>
+                <Card.Body>
                   {cE.hero.map((cH) => {
                     const heroImg = `${cH.thumbnail.path}.${cH.thumbnail.extension}`;
                     return (
-                      <div key={cH.id + "cH"}>
-                        <h3>{cH.name}</h3>
-                        <img
-                          width={200}
-                          onClick={() => navigate(`/Collections/${cE._id}`)}
-                          src={heroImg}
-                          alt="heroPic"
-                        />
-                      </div>
+                      <Accordion key={cH.id + "cH"}>
+                        <h3 className="pb-1 pt-2">{cH.name}</h3>
+                        <Accordion.Item className="d-flex flex-wrap justify-content-center">
+                          <img
+                            width={"200rem"}
+                            onClick={() => navigate(`/Collections/${cE._id}`)}
+                            src={heroImg}
+                            alt="heroPic"
+                          />
+                        </Accordion.Item>
+                      </Accordion>
                     );
                   })}
-                </>
-              </div>
+                </Card.Body>
+              </Card>
             );
           })}
-        </>
+        </div>
       )}
-    </>
+    </Container>
   );
 }
 
