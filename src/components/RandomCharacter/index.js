@@ -59,11 +59,12 @@ function RandomCharacter({ setIsLoading, setCharacters }) {
 
         const randomOb = response.data.data.results;
         const randomObjImg = `${randomOb[0].thumbnail.path}.${randomOb[0].thumbnail.extension}`;
-        const randomObj = response.data.data.results;
+        // const randomObj = response.data.data.results;
 
+        // eslint-disable-next-line no-unused-expressions
         randomObjImg.includes("image_not_available")
-          ? getCharacters()
-          : setCharacters(randomObj);
+          ? false
+          : setCharacters(randomOb);
       } catch (error) {
         console.log(error);
       }

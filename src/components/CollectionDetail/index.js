@@ -41,7 +41,7 @@ function CollectionDetail() {
       );
 
       setReload(true);
-    } catch (error) {
+    } catch (error) { 
       console.log(error);
     }
   }
